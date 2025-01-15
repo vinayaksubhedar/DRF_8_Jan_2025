@@ -13,6 +13,15 @@
 {% else %}
   Welcome Guest
 {% endif %}
-
+<P/>Below are the products updated in {{year}} available in the store...
+<ul>
+{% if orders %}
+{%for order in orders%}
+<li>{{order.id}} - {{order.placed_at}} - {{order.customer_id}}</li>
+{%endfor%}
+{%else%}
+No Products availale for year {{year}}
+{%endif%}
+</ul>
 </body>
 </html>

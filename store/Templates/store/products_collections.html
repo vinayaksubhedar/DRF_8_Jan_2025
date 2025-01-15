@@ -8,11 +8,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-{% if name %}
-  Welcome {{name}}
-{% else %}
-  Welcome Guest
-{% endif %}
-
+Product _ Collections
+<UL>
+{%for product in products%}
+<LI>{{product.title}} ---- {{product.collection.title}} ---- {{product.collection.featured_product_id}}</LI>
+{%endfor%}
+<UL>
 </body>
 </html>
