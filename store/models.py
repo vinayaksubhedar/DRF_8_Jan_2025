@@ -17,6 +17,9 @@ class Customer(models.Model):
     birth_date = models.DateField(null=True)
     membership = models.CharField(max_length=1,choices=MEMBERSHIP_CHOICES,default=MEMBERSHIP_BRONZE)
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
 class Address(models.Model):
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
@@ -26,9 +29,15 @@ class Promotion(models.Model):
     description = models.CharField(max_length=255)
     discount = models.FloatField()
 
+    def __str__(self):
+        return self.description
+
 class Collection(models.Model):
     title = models.CharField(max_length=255)
     featured_product = models.ForeignKey('Product',on_delete=models.SET_NULL,null=True,related_name='+')
+
+    def __str__(self):
+        return self.title
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -55,6 +64,9 @@ class Order(models.Model):
     placed_at = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(max_length=1,choices=PAYMENT_STATUS_CHOICES,default=PAYMENT_STATUS_PENDING)
     customer = models.ForeignKey(Customer,on_delete=models.PROTECT)
+
+    def __str__(self):
+        return str(self.pk)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,on_delete=models.PROTECT)
